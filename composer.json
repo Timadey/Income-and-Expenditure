@@ -1,0 +1,15 @@
+{
+    "name": "timothy/budget.tim",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Timothy Adeleke",
+            "email": "dlktimothy@gmail.com"
+        }
+    ],
+    "require": {}
+}
