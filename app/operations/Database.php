@@ -63,7 +63,9 @@ class Database
      * @value: an associative array containing the placeholder and value
      * Return: an associative array containing the fields gotten or NULL if not found
      */
-    public function dbGetData(array $column = NULL, string $from, array $join = NULL, array $where, array $value)
+    public function dbGetData(array $column = NULL, string $from, array $join = NULL,
+     array $where, array $value, string $order = null,
+    array $limit = null)
     {
         if ($this->conn == NULL){
             throw New \Exception("Database connection not found");
@@ -88,7 +90,9 @@ class Database
         }
         $where = implode(' AND ', $where_list);
         $query .= $where;
-        //echo $query;
+        $query .= $order ?? '';
+        $query .= $limit ? " LIMIT ".implode(', ', $limit) : '';
+        // echo $query; exit;
         try {
             $q = ($this->conn)->prepare($query);
             $q->execute($value);
@@ -98,6 +102,7 @@ class Database
             }; return NULL;
             
         } catch (\PDOException $err) {
+            echo $err->getMessage();
             throw new \Exception("Error Processing Request", 1);  
         }
     }
@@ -131,6 +136,7 @@ class Database
             return ($this->conn->lastInsertId());
         }
         catch (\PDOException $err) {
+            echo ($err->getMessage()); exit;
             throw new \Exception("Error Processing Request", 1);  
         }
     }

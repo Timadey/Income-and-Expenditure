@@ -9,16 +9,16 @@ class AuthController
         public static function login(Router $router)
         {
                 if (isset($_SESSION['user_id']) && isset($_SESSION['email']) && isset($_SESSION['name'])){
-                        echo $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
+                        return $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
                 }
                 else if (isset($_COOKIE['user_id']) && isset($_COOKIE['email']) && isset($_COOKIE['name'])){
                         $_SESSION['user_id'] = $_COOKIE['user_id'];
                         $_SESSION['email'] = $_COOKIE['email'];
                         $_SESSION['name'] = $_COOKIE['name'];
-                        echo $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
+                        return $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
                 }
 
-                echo $router->renderView('auth/login', [
+                return $router->renderView('auth/login', [
                         'page_title' => 'Login',
                         'error' => '',
                         'email' => ''
@@ -28,16 +28,16 @@ class AuthController
         public static function register(Router $router)
         {
                 if (isset($_SESSION['user_id']) && isset($_SESSION['email']) && isset($_SESSION['name'])){
-                        echo $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in',], 'layouts/auth_layout');
+                        return $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in',], 'layouts/auth_layout');
                 }
                 else if (isset($_COOKIE['user_id']) && isset($_COOKIE['email']) && isset($_COOKIE['name'])){
                         $_SESSION['user_id'] = $_COOKIE['user_id'];
                         $_SESSION['email'] = $_COOKIE['email'];
                         $_SESSION['name'] = $_COOKIE['name'];
-                        echo $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
+                        return $router->renderView("auth/logged_in_as",['page_title' => 'You are logged in'], 'layouts/auth_layout');
                 }
 
-                echo $router->renderView('auth/register', [
+                return $router->renderView('auth/register', [
                         'page_title' => 'Register',
                         'error' => '',
                         'email' => '',

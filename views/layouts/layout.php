@@ -60,7 +60,7 @@
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                     <li class="ms-3"><a class="text-muted" href="https://www.twitter.com/iamtimadey"><img src="/assets/img/bootstrap/twitter.svg" alt="Bootstrap" width="32" height="32"></a></li>
                     <li class="ms-3"><a class="text-muted" href="https://www.github.com/timadey"><img src="/assets/img/bootstrap/github.svg" alt="Bootstrap" width="32" height="32"></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><img src="/assets/img/bootstrap/facebook.svg" alt="Bootstrap" width="32" height="32"></use></svg></a></li>
+                    <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/in/timadey"><img src="/assets/img/bootstrap/linkedin.svg" alt="Bootstrap" width="32" height="32"></use></svg></a></li>
                 </ul>
             </footer>
         </div>

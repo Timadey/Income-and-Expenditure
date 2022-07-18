@@ -11,6 +11,8 @@
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
 							<?php
+							echo ($_SESSION['msg']) ?? "";
+                			unset($_SESSION['msg']);
 								if (is_array($error))
 								{
 										echo "<div class = 'alert alert-danger' role = 'alert'><strong>";

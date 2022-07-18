@@ -32,6 +32,23 @@ class Help
                 {
                         return ("<div class = 'alert alert-success' role = 'alert'><strong>$msg</strong></div>");
                 }
-        }   
+        }
+        /**
+         * getLimit - get limit of database query
+         */
+        public static function getLimit(int $total)
+        {
+                if (isset($_GET['no']) && is_int($_GET['no']))
+                {
+                        $page_no = $_GET['page_no'];
+                }else $page_no = 1;
+                $next_page = $page_no + 1;
+                $prev_page = $page_no - 1;
+                $per_page = 5;
+                $offset = $per_page * $page_no;
+                $total_per_page = ceil($total/$per_page);
+                $second_last = $total_per_page - 1;
+
+        }
 }
 ?>

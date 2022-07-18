@@ -52,7 +52,7 @@
                                 <th scope="col">S/N</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Category</th>
-                                <th scope="col">Description</th>
+                                <th scope="col" style="width:5%">Description</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -63,7 +63,7 @@
                                 <th scope="row"><?php echo $key+1 ?></th>
                                 <td <?php echo $transaction['category_id'] == 2 ? "style='color:red'":" style='color:green'";?>><?php echo "NGN ".$transaction['transaction_amount'];?></td>
                                 <td><?php echo $transaction['sub_category_name'];?></td>
-                                <td><?php echo $transaction['transaction_desc'];?></td>
+                                <td style="width:25%"><?php echo $transaction['transaction_desc'];?></td>
                                 <td><?php echo $transaction['transaction_date'];?></td>
                             
                                 <td>
@@ -81,8 +81,44 @@
                                 </td>
                             <?php };?>
                             </tr>
+                            
                         </tbody>
+                        
                     </table>
+
+                    
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                        <li class="page-item <?php echo $page_no == 1 ? 'disabled' : ''?>" >
+                            <a class="page-link" href="#" aria-label="first-page">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item <?php echo $page_no == 1 ? 'disabled' : ''?>">
+                            <a class="page-link" href="#" aria-label="Previous" >
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only"></span>
+                            </a>
+                        </li>
+                        <?php for ($counter = 1; $counter < $total_page; $counter++)
+                        {
+                           echo  "<li class='page-item'><a class='page-link' href='#'>$counter</a></li>";
+                        }
+                        ?>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only"></span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true" >&raquo;&raquo;</span>
+                                <span class="sr-only"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         <?php };

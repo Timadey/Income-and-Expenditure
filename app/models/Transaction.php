@@ -12,6 +12,7 @@ class Transaction extends Book
         public ? int $sub_category_id = null;
         public ? float $transaction_amount = null;
         public ? string $transaction_desc = null;
+        public ? string $type = null;
 
         public function __construct(Database $db, array $columns)
         {
@@ -22,6 +23,7 @@ class Transaction extends Book
                         $this->transaction_id = (int) ($columns['transaction_id'] ??  null);
                         $this->transaction_amount = (float) ($columns['transaction_amount'] ?? null);
                         $this->transaction_desc = (string) ($columns['transaction_desc'] ?? null);
+                        $this->type = (string) ($columns['type'] ?? null);
                 }
                 
         }
@@ -41,13 +43,14 @@ class Transaction extends Book
                 $error = $this->validateColumns();
                 if (!empty($error)) return $error;
 
-                $col = array ("`user_id`", "`book_id`", "`sub_category_id`", "`transaction_amount`", "`transaction_desc`");
+                $col = array ("`user_id`", "`book_id`", "`sub_category_id`", "`transaction_amount`", "`transaction_desc`", "`type`");
                 $val = array (
                         ':user_id' => $this->user_id,
                         ':book_id' => $this->book_id,
                         ':sub_cat_id' => $this->sub_category_id,
                         ':amount' => $this->transaction_amount,
-                        ':desc' => $this->transaction_desc
+                        ':desc' => $this->transaction_desc,
+                        ':type' => $this->type
                 );
                 $insert_id = $this->insertData("`transactions`", $col, $val);
 

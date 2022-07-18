@@ -23,7 +23,7 @@ class TransactionController
                                 echo header("Location: /");
                         }
                         
-                        echo $router->renderView('transaction/transaction_type', [
+                        return $router->renderView('transaction/transaction_type', [
                                 'page_title' => 'Edit '.$exist['book_name'],
                                 'book' => $exist,
                                 'book_id' =>$book_id
@@ -61,7 +61,7 @@ class TransactionController
                         $sub_categories = $router->dbs->dbGetData(["`sub_category`.`sub_category_id`", "`sub_category`.`sub_category_name`"],
                         "`sub_category`", null, ['`category_id`'=> ':category_id'], [':category_id' => $category_id]);
 
-                        echo $router->renderView('transaction/update_transaction', [
+                        return $router->renderView('transaction/update_transaction', [
                                 'page_title' => $page_title?? 'Add New Transaction',
                                 'error' => '',
                                 'cat' => $category_id,
@@ -128,13 +128,14 @@ class TransactionController
                                 'book_id' => $book_id,
                                 'sub_category_id' => $sub_category_id,
                                 'transaction_amount' => $amount,
-                                'transaction_desc' => $desc
+                                'transaction_desc' => $desc,
+                                'type' => 1
                         ]);
                         $error = $transaction->addTransaction();
                         
                         if (is_array($error))
                         {
-                                echo $router->renderView('transaction/update_transaction', [
+                                return $router->renderView('transaction/update_transaction', [
                                         'page_title' =>'Add New Transaction',
                                         'error' => $error,
                                         'cat' => $category_id,
@@ -145,6 +146,7 @@ class TransactionController
                                         'book' => $exist,
                                         'book_id' => $book_id,
                                         'sub_categories' => $sub_categories,
+                                        'sub_category_id' => $sub_category_id,
                                         'method' => '/transaction/add',
                                         'button_label' => "Log $cat_name",
                                         'button_id' => 'btn-log-transaction',
@@ -213,7 +215,7 @@ class TransactionController
                                 }
                         }
 
-                        echo $router->renderView('transaction/update_transaction', [
+                        return $router->renderView('transaction/update_transaction', [
                                 'page_title' => 'Edit Transaction',
                                 'error' => $error ?? '',
                                 'cat' => $category_id,
@@ -224,6 +226,7 @@ class TransactionController
                                 'book' => $exist,
                                 'book_id' => $book_id,
                                 'sub_categories' => $sub_categories,
+                                'sub_category_id' => $sub_category_id,
                                 'method' => '/transaction/edit',
                                 'button_label' => "Edit $cat_name",
                                 'button_id' => 'btn-edit-transaction',

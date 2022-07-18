@@ -36,7 +36,9 @@
                                                 <select class="form-control" id="sub-category-id" name="sub-category-id" required>
                                                         <option value="">Choose...</option>
                                                         <?php foreach($sub_categories as $sub_cat => $val){?>
-                                                        <option value=<?php echo $val['sub_category_id'];?>><?php echo $val['sub_category_name'];?></option>
+                                                        <option value="<?php echo $val['sub_category_id'];?>" 
+                                                        <?php echo  isset($sub_category_id) && $sub_category_id == $val['sub_category_id'] ?
+                                                         'selected' : '';?>><?php echo $val['sub_category_name'];?></option>
                                                         <?php }; ?>
                                                 </select>
                                         </div><br>

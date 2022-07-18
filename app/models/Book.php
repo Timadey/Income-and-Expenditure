@@ -11,6 +11,7 @@ class Book extends Database
         public ? string $book_name = null;
         public ? string $book_desc = null;
         public ? string $book_date = null;
+        public ? int $category_id = 1;
 
         public function __construct(Database $db, array $columns = [])
         {
@@ -20,6 +21,7 @@ class Book extends Database
                 $this->book_name = $columns['book_name'] ?? null;
                 $this->book_desc = $columns['book_desc'] ?? null;
                 $this->book_date = $columns['book_date'] ?? null;
+
                 parent::__construct();
         }
 
@@ -27,7 +29,8 @@ class Book extends Database
         {
                 $where = array ('`user_id`' => ':user_id');
                 $value = array (':user_id' => $this->user_id);
-                $data = $this->dbGetData(null, "`books`", null, $where, $value); //implement order by date desc in database class
+                $order = " ORDER BY `book_date` DESC";
+                $data = $this->dbGetData(null, "`books`", null, $where, $value, $order); //implement order by date desc in database class
 
                 return $data;
         }
@@ -45,10 +48,11 @@ class Book extends Database
                 if ($this->nameExist($this->book_name, $this->user_id)) $error[] = "Duplicate name detected";
                 if (!empty($error)) return $error;
 
-                $last_inserted = $this->insertData("`books`", ['`user_id`', '`book_name`', '`book_desc`'], [
+                $last_inserted = $this->insertData("`books`", ['`user_id`', '`book_name`', '`book_desc`', '`category_id`'], [
                         ':user_id' => $this->user_id,
                         ':bk_name' => $this->book_name,
-                        ':bk_desc' => $this->book_desc
+                        ':bk_desc' => $this->book_desc,
+                        ':category_id' => $this->category_id
                 ]);
                 
                 if (!$last_inserted) return null;

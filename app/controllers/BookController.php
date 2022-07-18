@@ -18,7 +18,7 @@ class BookController
         {
                 $book = new Book ($router->dbs, ['user_id' => $_SESSION['user_id']]);
                 $data = $book->load();
-                echo $router->renderView('index', [
+                return $router->renderView('index', [
                         'page_title' => 'Books',
                         'data' => $data
                 ]);
@@ -39,7 +39,7 @@ class BookController
                         $exist = $book->idExist();
                         
                         if ($exist === false){
-                                echo $router->renderView("404", ['page_title' => 'Book doesn\'t exist']);
+                                return $router->renderView("404", ['page_title' => 'Book doesn\'t exist']);
                                 exit();
                         };
                         $book = $exist;
@@ -49,21 +49,48 @@ class BookController
                         $join = array ('`books`' => '`book_id`', '`sub_category`' => '`sub_category_id`');
                         $where = array ('`books`.`book_id`' => ':book_id', '`books`.`user_id`' => ':user_id');//, '`sub_category`.`category_id`' => ':book_type');
                         $val = array (':book_id' => $book_id, ':user_id' => $_SESSION['user_id']);//, ':book_type' => $rdata['category_id']);
+                        $order = " ORDER BY `transaction_date` DESC";
+
+                        /** Will come back to this pagination later */
+                        // $limit = Help::getLimit(3);
+                        // $total_row = count($router->dbs->dbGetData(['`transaction_id`'], $table, $join, $where, $val));
+                        // exit;
+                        $total_row = 20;
+
+                
+                        // if total page is greater than 10
+
+                        if (isset($_GET['page_no']) && is_int($_GET['page_no']))
+                        {
+                                $page_no = $_GET['page_no'];
+                        }else $page_no = 1;
+                        $pag['next_page'] = $page_no + 1;
+                        $pag['prev_page'] = $page_no - 1;
+                        $per_page = 3;
+                        $offset = $per_page * ($page_no - 1);
+                        $total_per_page = ceil($total_row / $per_page);
+                        $pag['second_last'] = $total_per_page - 1;
+                        $limit = [$offset, $total_per_page];
+
+                        // echo $total_row; exit;
                         try
                         {
-                                $transactions = $router->dbs->dbGetData(null, $table, $join, $where, $val); // implement ORDER BY transactions.date DESC";
+                                $transactions = $router->dbs->dbGetData(null, $table, $join, $where, $val, $order); // implement ORDER BY transactions.date DESC";
                         }
                         catch(Exception $err)
                         {
                                 $_SESSION['msg'] = help::alert("oops! We're experiencing technical issue at the moment", 0);
                         };
                         
-                        echo $router->renderView('book/view_book',
+                        return $router->renderView('book/view_book',
                         [
                                 'page_title' => $book['book_name'],
                                 'book_id' => $book_id,
                                 'transactions' => $transactions,
-                                'book' => $book
+                                'book' => $book,
+                                'page_no' => $page_no,
+                                'total_page' => $total_per_page,
+                                'pag' => $pag
                         ]);
                 }
                 else
@@ -112,7 +139,7 @@ class BookController
                         exit;
                 };
                
-                echo $router->renderView('book/update_book', [
+                return $router->renderView('book/update_book', [
                         'page_title' => $edit,
                         'edit' => $edit,
                         'view_book' => '/book?book='.$book_id,
@@ -149,7 +176,7 @@ class BookController
                         $error[] = "Oops! We're experencing technical issues";
 
                 }
-                echo $router->renderView('book/update_book', [
+                return $router->renderView('book/update_book', [
                         'page_title' => 'Add New Book',
                         'edit' => 'Add New Book',
                         'view_book' => '/',
