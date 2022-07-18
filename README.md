@@ -51,11 +51,11 @@ Below is the database structure, define `foreign constraint` where neccessary
         </tr>
         <tr>
             <td>books</td>
-            <td>book_id, user_id, book_name, book_desc, book_date</td>
+            <td>book_id, user_id, book_name, book_desc, book_date, category_id</td>
         </tr>
         <tr>
             <td>transactions</td>
-            <td>transaction_id, user_id, book_id, category_id, sub_category_id, transaction_amount, transaction_desc, transaction_date</td>
+            <td>transaction_id, user_id, book_id, category_id, type, sub_category_id, transaction_amount, transaction_desc, transaction_date</td>
         </tr>
         <tr>
             <td>category</td>
@@ -72,10 +72,11 @@ Below is the database structure, define `foreign constraint` where neccessary
 The only configuration needed is in the [`config/config.php file`](config/config.php), open it and set your `Database Configurations`.
 
 ### Ready made database
-A [`budget.sql file`](budget.sql) is availabe at the root of this repo but it's outdated. If you're going to use it. <b>Ensure that you do the following after importing</b>
+A [`budget.sql file`](budget.sql) is availabe at the root of this repo.
+ <!-- but it's outdated. If you're going to use it. <b>Ensure that you do the following after importing</b>
 
 * Delete the `category_id` column in `books` table
-* Rename the `type` column in `transactions` table to `category_id` or simply create a new `category_id` column and delete `type`
+* Rename the `type` column in `transactions` table to `category_id` or simply create a new `category_id` column and delete `type` -->
 <br>
 <!-- ## Live Test
 Coming soon... -->
