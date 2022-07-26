@@ -4,6 +4,7 @@
 ## Description
 <p>
 <b>Budget</b> is a simple web app that provides a means for users to record their income and expenses. It helps you to keep track of your spending.
+Budget is written in pure php. An <b>advanced version</b> with more feature and functionalites, develoeped using laravel, can be found <a href="https://github.com/Timadey/budget">here</a>
 </p>
 
 ## Features
