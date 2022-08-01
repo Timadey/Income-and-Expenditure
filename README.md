@@ -29,6 +29,8 @@ Dependency Manager
 
 ## Configuration
 
+Run `composer update` in the root directory
+
 ### Database Structure
 
 > Category Table must be filled with `Income` category and `Expense` category. <br>
