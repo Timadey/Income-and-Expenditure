@@ -9,5 +9,7 @@ services:
             context: .
             dockerfile: Dockerfile
             target: base
+        entrypoint: composer
+        working_dir: /public
         ports:
             - "8080:80"
