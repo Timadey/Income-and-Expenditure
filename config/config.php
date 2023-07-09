@@ -10,8 +10,8 @@ $DB_NAME = 'budget';             ###
 ###################################
 
 /** Database constants */
-define("__DB_HOST__", 'localhost');
-define("__DB_USER__", 'timothy');
-define("__DB_PASSWORD__", '');
-define("__DB_NAME__", 'budget');
+define("__DB_HOST__", 'sql7.freemysqlhosting.net');
+define("__DB_USER__", 'sql7631567');
+define("__DB_PASSWORD__", 'CttMEUucBa');
+define("__DB_NAME__", 'sql7631567');
 ?>

@@ -27,7 +27,8 @@ class Database
         $dbName = __DB_NAME__;
         try {
             // $this->conn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser,  $dbPassword);
-            $this->conn = new PDO("mysql:host=localhost;dbname=budget", 'timothy',  '');
+            // $this->conn = new PDO("mysql:host=localhost;dbname=budget", 'timothy',  '');
+            $this->conn = new PDO("mysql:host=sql7.freemysqlhosting.net;dbname=sql7631567", 'sql7631567',  'CttMEUucBa');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $err) {
             return null;
