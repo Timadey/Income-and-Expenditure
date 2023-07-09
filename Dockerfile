@@ -7,7 +7,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Copy the Apache configuration file
-COPY public/myapp.conf /etc/apache2/sites-available/app.conf
+COPY public/app.conf /etc/apache2/sites-available/app.conf
 
 # Enable the Apache configuration
 RUN a2ensite app.conf
