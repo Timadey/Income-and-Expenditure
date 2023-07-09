@@ -10,6 +10,7 @@ services:
             dockerfile: Dockerfile
             target: base
         entrypoint: composer
-        working_dir: /public
+        volumes:
+            - ./php:/var/www/html/public
         ports:
             - "8080:80"
