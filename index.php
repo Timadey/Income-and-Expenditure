@@ -11,8 +11,8 @@ session_start();
 //  $_SESSION['email'] = 'tim@budget.com';
 //  $_SESSION['name'] = "Timothy";
 
-require_once __DIR__.'/../config/config.php';
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/config/config.php';
+require_once __DIR__.'/vendor/autoload.php';
 
 use app\controllers\AuthController;
 use app\router\Router;
