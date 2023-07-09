@@ -22,7 +22,7 @@ use app\operations\Database;
 use app\operations\Account;
 
 $dbs = new Database();
-$dbs->dbConnect($DB_HOST,$DB_USER, $DB_PASSWORD, $DB_NAME);
+$dbs->dbConnect($DB_HOST,$DB_USER, $DB_PASSWORD,$DB_NAME);
 $user = new Account ($dbs);
 
 $router = new Router($dbs);

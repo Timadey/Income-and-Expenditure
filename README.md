@@ -4,7 +4,7 @@
 ## Description
 <p>
 <b>Budget</b> is a simple web app that provides a means for users to record their income and expenses. It helps you to keep track of your spending.
-Budget is written in pure php. An <b>advanced version</b> with more feature and functionalites, develoeped using laravel, can be found <a href="https://github.com/Timadey/budget">here</a>
+Budget is written in Vanilla php.
 </p>
 
 ## Features
@@ -18,7 +18,7 @@ Budget is written in pure php. An <b>advanced version</b> with more feature and 
 ## Techonologies used
 
 Languages 
-* `PHP`
+* `Vanilla PHP`
 * `MYSQL`
 * `HTML` 
 * `CSS`
@@ -28,8 +28,13 @@ Dependency Manager
 * `composer`
 
 ## Configuration
+Go to root and run the commands
 
-Run `composer update` in the root directory
+```
+composer install
+cd public
+php -S localhost
+```
 
 ### Database Structure
 
@@ -75,7 +80,8 @@ Below is the database structure, define `foreign constraint` where neccessary
 The only configuration needed is in the [`config/config.php file`](config/config.php), open it and set your `Database Configurations`.
 
 ### Ready made database
-A [`budget.sql file`](budget.sql) is availabe at the root of this repo.
+A [`budget.sql file`](budget.sql) is availabe at the root of this repo. Import this to your database to kickstart the app.
+
  <!-- but it's outdated. If you're going to use it. <b>Ensure that you do the following after importing</b>
 
 * Delete the `category_id` column in `books` table

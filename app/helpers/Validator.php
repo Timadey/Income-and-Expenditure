@@ -5,7 +5,7 @@ class Validator
 {
         public static function isTextValid ($text, $min, $max)
         {
-                if (mb_strlen($text) > $min && mb_strlen($text) < $max)
+                if (strlen($text) > $min && strlen($text) < $max)
                 {
                         if (!preg_match("/^[a-zA-Z- ']*$/", $text)) return false;
                         else return true;
